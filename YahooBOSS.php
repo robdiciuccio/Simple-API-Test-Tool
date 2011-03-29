@@ -29,9 +29,9 @@ class YahooBOSS extends BaseAPI {
 
 		// set API arguments
 		$this->api_args = array(
-			'appid' => '',						// API KEY HERE ###
+			'appid' => !empty($GLOBALS['api_config']['YahooBOSS']['appid']) ? $GLOBALS['api_config']['YahooBOSS']['appid'] : '',
 			'format' => 'json',
-			'count' => 5
+			'count' => 10
 		);
 	}
 

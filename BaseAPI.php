@@ -44,11 +44,12 @@ class BaseAPI {
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($this->api_args));
 		}
-				
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		
 		$this->raw_result = curl_exec($ch);
-                $this->curl_info = curl_getinfo($ch);
+		$this->curl_info = curl_getinfo($ch);
 		curl_close($ch);
 				
 		$this->postProcess();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SocialActions: http://socialactions.pbworks.com/Social%C2%A0Actions%C2%A0API%C2%A0-%C2%A0Documentation
+ * SocialActions v2: http://wiki.socialactions.com/w/page/33195836/Social%C2%A0Actions%C2%A0API+V2%C2%A0-%C2%A0Documentation
  *
  * @package default
  * @author Rob DiCiuccio
@@ -25,8 +25,7 @@ class SocialActions extends BaseAPI {
 
 		// set API arguments
 		$this->api_args = array(
-			'match' => 'any',
-			'limit' => 5,
+			'limit' => 10,
 			'q' => $query
 		);
 	}
@@ -41,12 +40,12 @@ class SocialActions extends BaseAPI {
 		foreach($this->data as $r) {
 
 			$rel = array(
-				'title' => $r['title'] . ' [' . $r['platform_name'] . ']',
-				'score' => '',
-				'url' 	=> $r['url'],
-				'date' 	=> '',
-				'descr' => strip_tags(substr($r['description'],0,250)).'...',
-				'source'=> 'Social Actions'
+				'title' => $r['action']['title'] . ' [' . $r['action']['platform_name'] . ']',
+				'score' => $r['action']['score'],
+				'url' 	=> $r['action']['url'],
+				'date' 	=> $r['action']['created_at'],
+				'descr' => strip_tags(substr($r['action']['description'],0,250)).'...',
+				'source'=> '<a href="' . $r['action']['platform_url'] . '" target="_blank">' . $r['action']['platform_name'] . '</a>'
 			);
 			$this->related[] = $rel;
 		}

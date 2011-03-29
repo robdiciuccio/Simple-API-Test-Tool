@@ -8,10 +8,6 @@
  */
 class Truveo extends BaseAPI {
 
-	protected $truveo_app_id = '';						// API KEYS HERE ###
-	protected $truveo_secret_key = '';
-
-
 	public function init_related($nlp_obj) {
 
 		$this->http_method = 'GET';
@@ -29,10 +25,10 @@ class Truveo extends BaseAPI {
 
 		// set API arguments
 		$this->api_args = array(
-			'appid' => $this->truveo_app_id,
+			'appid' => !empty($GLOBALS['api_config']['Truveo']['appid']) ? $GLOBALS['api_config']['Truveo']['appid'] : '',
 			'query' => $query,
 			'method' => 'truveo.videos.getVideos',
-			'results' => 5,
+			'results' => 10,
 			'format' => 'json',
 			//'showAdult' => 0
 		);

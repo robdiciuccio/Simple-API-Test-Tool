@@ -7,9 +7,7 @@
  * @author Rob DiCiuccio
  */
 class ZemantaSocialActions extends BaseAPI {
-		
-	protected $zemanta_api_key = '';							// API KEY HERE ###
-	
+			
 	public function init_related($nlp_obj) {
 
 		// set API url
@@ -18,7 +16,7 @@ class ZemantaSocialActions extends BaseAPI {
 		// set API arguments
 		$this->api_args = array(
 			'method' => 'zemanta.suggest',
-			'api_key' => $this->zemanta_api_key,
+			'api_key' => !empty($GLOBALS['api_config']['ZemantaSocialActions']['api_key']) ? $GLOBALS['api_config']['ZemantaSocialActions']['api_key'] : '',
 			'text' => stripslashes($nlp_obj->getText()),
 			'sourcefeed_ids' => '14451 2127',
 			'personal_scope' => 1,

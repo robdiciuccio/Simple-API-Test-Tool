@@ -1,7 +1,7 @@
 <?php
 
 /**
- * YouTube: http://www.youtube.com
+ * YouTube: http://code.google.com/apis/youtube/2.0/reference.html
  *
  * @package default
  * @author Rob DiCiuccio
@@ -22,14 +22,13 @@ class YouTube extends BaseAPI {
 		}
 		$query = implode($key_terms, '|');  // OR
 
-
 		// set API arguments
 		$this->api_args = array(
 			'alt' => 'jsonc',
-			'max-results' => 5,
+			'max-results' => 10,
 			'q' => $query,
 			'v' => 2,
-			'category' => 'Nonprofit'        // multiples comma separated
+			'category' => !empty($GLOBALS['api_config']['YouTube']['category']) ? $GLOBALS['api_config']['YouTube']['category'] : ''	// multiples comma separated
 		);
 	}
 

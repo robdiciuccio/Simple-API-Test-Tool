@@ -8,7 +8,7 @@
  */
 class Yahoo extends BaseAPI {
 		
-	function init_nlp($text) {
+	public function init_nlp($text) {
 
 		$this->source_text = $text;     // save text
 		
@@ -17,7 +17,7 @@ class Yahoo extends BaseAPI {
 		
 		// set API arguments
 		$this->api_args = array(
-			'appid' => '',						// API KEY HERE ###
+			'appid' => !empty($GLOBALS['api_config']['Yahoo']['appid']) ? $GLOBALS['api_config']['Yahoo']['appid'] : '',
 			'output' => 'json',
 			'context' => stripslashes($text)
 		);

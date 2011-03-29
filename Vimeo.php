@@ -8,9 +8,6 @@
  */
 class Vimeo extends BaseAPI {
 
-	protected $_consumer_key = '';						// API KEY HERE ###
-	protected $_consumer_secret = '';
-
 	const API_REST_URL = 'http://vimeo.com/api/rest/v2';
 
 	public function init_related($nlp_obj) {
@@ -34,7 +31,7 @@ class Vimeo extends BaseAPI {
 			'full_response' => '1',
 			'query' => $query,
 			'format' => 'json',
-			'per_page' => 5,
+			'per_page' => 10,
 			'sort' => 'relevant'
 		);
 
@@ -111,7 +108,7 @@ class Vimeo extends BaseAPI {
 
 		// Prepare oauth arguments
 		$oauth_params = array(
-			'oauth_consumer_key' => $this->_consumer_key,
+			'oauth_consumer_key' => !empty($GLOBALS['api_config']['Vimeo']['consumer_key']) ? $GLOBALS['api_config']['Vimeo']['consumer_key'] : '',
 			'oauth_version' => '1.0',
 			'oauth_signature_method' => 'HMAC-SHA1',
 			'oauth_timestamp' => time(),
@@ -216,7 +213,7 @@ class Vimeo extends BaseAPI {
 
 		// Make the key
 		$key_parts = array(
-			$this->_consumer_secret,
+			!empty($GLOBALS['api_config']['Vimeo']['consumer_secret']) ? $GLOBALS['api_config']['Vimeo']['consumer_secret'] : '',
 			''
 		);
 		$key_parts = self::url_encode_rfc3986($key_parts);

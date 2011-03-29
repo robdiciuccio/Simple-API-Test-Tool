@@ -8,7 +8,7 @@
  */
 class Evri extends BaseAPI {
 		
-	function init_nlp($text) {
+	public function init_nlp($text) {
 
 		$this->source_text = $text;     // save text
 		

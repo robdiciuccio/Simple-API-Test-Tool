@@ -8,7 +8,7 @@
  */
 class AlchemyAPI extends BaseAPI {
 		
-	function init_nlp($text) {
+	public function init_nlp($text) {
 
 		$this->source_text = $text;     // save text
 		
@@ -17,7 +17,7 @@ class AlchemyAPI extends BaseAPI {
 		
 		// set API arguments
 		$this->api_args = array(
-			'apikey' => '',						// API KEY HERE ###
+			'apikey' => !empty($GLOBALS['api_config']['AlchemyAPI']['apikey']) ? $GLOBALS['api_config']['AlchemyAPI']['apikey'] : '',
 			'outputMode' => 'json',
 			'disambiguate' => 1,
 			'linkedData' => 1,

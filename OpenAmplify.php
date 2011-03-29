@@ -10,7 +10,7 @@
  */
 class OpenAmplify extends BaseAPI {
 		
-	function init_nlp($text) {
+	public function init_nlp($text) {
 
 		$this->source_text = $text;     // save text
 		
@@ -19,7 +19,7 @@ class OpenAmplify extends BaseAPI {
 		
 		// set API arguments
 		$this->api_args = array(
-			'apiKey' => '',						// API KEY HERE ###
+			'apiKey' => !empty($GLOBALS['api_config']['OpenAmplify']['apikey']) ? $GLOBALS['api_config']['OpenAmplify']['apikey'] : '',
 			'analysis' => 'all',
 			'outputFormat' => 'json',
 			'InputText' => stripslashes($text)

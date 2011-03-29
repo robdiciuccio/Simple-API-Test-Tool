@@ -6,9 +6,9 @@ This is a simple PHP application created to test NLP/entity extraction and relat
 
 -- SETUP --
 
-The application should run on any PHP5-enabled web server. Copy the files to a directory on your web server, and load the index.php file in a browser.
+The application should run on any PHP5-enabled web server with cURL. Copy the files to a directory on your web server, then copy the config.example.php file to config.php (the configuration file).
 
-You will need API keys for most of the APIs included in this test tool. The developer URLs for each API are included within the API class. Register with the relevant API providers, and add your key to the API class, where indicated.
+You will need API keys for most of the APIs included in this test tool. The developer URLs for each API are included within the API classes. Register with the relevant API providers, and add your keys to the configuration file, where indicated.
 
 -- CREDITS --
 

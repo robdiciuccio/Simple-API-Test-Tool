@@ -8,10 +8,6 @@
  */
 class Daylife extends BaseAPI {
 
-	protected $daylife_access_key = '';						// API KEYS HERE ###
-	protected $daylife_secret_key = '';
-
-
 	public function init_related($nlp_obj) {
 
 		$this->http_method = 'GET';
@@ -28,12 +24,15 @@ class Daylife extends BaseAPI {
 			$needOr = true;
 		}
 
+		$access_key = !empty($GLOBALS['api_config']['Daylife']['access_key']) ? $GLOBALS['api_config']['Daylife']['access_key'] : '';
+		$secret_key = !empty($GLOBALS['api_config']['Daylife']['secret_key']) ? $GLOBALS['api_config']['Daylife']['secret_key'] : '';
+
 		// set API arguments
 		$this->api_args = array(
-			'accesskey' => $this->daylife_access_key,
+			'accesskey' => $access_key,
 			'query' => $query,
-			'limit' => 5,
-			'signature' => hash('md5', $this->daylife_access_key . $this->daylife_secret_key . $query)
+			'limit' => 10,
+			'signature' => hash('md5', $access_key . $secret_key . $query)
 		);
 
 	}

@@ -14,8 +14,16 @@ error_reporting(E_ALL);
 require_once('krumo/class.krumo.php');
 
 // define APIs
-$services = array('OpenCalais', 'Zemanta', 'Evri', 'AlchemyAPI', 'OpenAmplify', 'Yahoo');
+$services = array('OpenCalais', 'Zemanta', 'Evri', 'AlchemyAPI', 'OpenAmplify', 'Yahoo', 'DBpediaSpotlight');
 $content_services = array('Zemanta', 'Daylife', 'YahooBOSS', 'Bing', 'YouTube', 'Truveo', 'Vimeo','SocialActions','ZemantaSocialActions');
+
+// load config
+$config_file = 'config.php';
+if(file_exists($config_file) && is_readable($config_file)) {
+	include_once($config_file);
+} else {
+	$config_error = "Failed to load config file.";
+}
               
 // require models
 require_once('BaseAPI.php');
@@ -40,6 +48,8 @@ foreach($content_services as $model) {
 </head>
 
 <body>
+
+	<?php if(!empty($config_error)) echo "<div style=\"color:red\">{$config_error}</div>"; ?>
 	
 	<?php
 
@@ -49,8 +59,8 @@ foreach($content_services as $model) {
 		$time_start = microtime(true);
 		
 		$api = new $_POST['api'];
-                // init NLP
-                $api->init_nlp($_POST['content']);
+		// init NLP
+		$api->init_nlp($_POST['content']);
 		
 		echo '<h3>ENTITIES: Submitting to ' . get_class($api) . '...</h3>';
 		echo '<p style="font-style:italic">API URL: ' . $api->getURL() . '</p>';
@@ -108,7 +118,7 @@ foreach($content_services as $model) {
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 
-                $curl_info = $content_api->getCurlInfo();
+		$curl_info = $content_api->getCurlInfo();
 
 		echo '<p style="font-weight:bold">Raw Result (HTTP code: ' . $curl_info['http_code'] . '):</p>';
 		echo '<pre>';
@@ -119,7 +129,7 @@ foreach($content_services as $model) {
 		echo '<p style="font-weight:bold">Parsed Result:</p>';
 		krumo($content_api->getData());
 
-		echo '<p style="font-weight:bold">ARTICLES:</p>';
+		echo '<p style="font-weight:bold">RELATED CONTENT:</p>';
 		$related = $content_api->getRelated();
 		foreach($related as $r) {
 			echo '<p>';

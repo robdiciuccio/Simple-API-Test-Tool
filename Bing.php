@@ -25,10 +25,10 @@ class Bing extends BaseAPI {
 
 		// set API arguments
 		$this->api_args = array(
-			'AppId' => '',			// API KEY HERE ###
-			'Sources' => 'Video',   // SET TO 'Video' OR 'News' ###
-			'News.Count' => 5,
-			'Video.Count' => 5,
+			'AppId' => !empty($GLOBALS['api_config']['Bing']['AppId']) ? $GLOBALS['api_config']['Bing']['AppId'] : '',
+			'Sources' => !empty($GLOBALS['api_config']['Bing']['Sources']) ? $GLOBALS['api_config']['Bing']['Sources'] : 'Video',   // 'Video' OR 'News'
+			'News.Count' => 10,
+			'Video.Count' => 10,
 			'Query' => $query
 		);
 	}

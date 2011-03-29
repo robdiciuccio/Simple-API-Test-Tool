@@ -8,7 +8,7 @@
  */
 class OpenCalais extends BaseAPI {
 
-	function init_nlp($text) {
+	public function init_nlp($text) {
 
 		$this->source_text = $text;     // save text
 		
@@ -25,7 +25,7 @@ EOF;
 		
 		// set API arguments
 		$this->api_args = array(
-			'licenseID' => '',						// LICENSE KEY HERE ###
+			'licenseID' => !empty($GLOBALS['api_config']['OpenCalais']['licenseID']) ? $GLOBALS['api_config']['OpenCalais']['licenseID'] : '',
 			'paramsXML' => $paramsXml,
 			'content' => stripslashes($text)
 		);
