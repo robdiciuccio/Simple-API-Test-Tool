@@ -1,7 +1,7 @@
 <?php
 
 /**
- * AlchemyAPI: http://www.alchemyapi.com/api/entity/textc.html
+ * DBpedia Spotlight: http://dbpedia.org/spotlight
  *
  * @package default
  * @author Rob DiCiuccio
